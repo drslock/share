@@ -13,7 +13,7 @@ int currentScore = 1;
 
 void setup()
 {
-  size(960,720,P2D);
+  size(800,600,P2D);
   connectToArduinoWin();
   imageMode(CENTER);
   textSize(20);
