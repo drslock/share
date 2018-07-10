@@ -7,15 +7,13 @@ AudioPlayer wallSound, batSound;
 PImage ball, bat, back;
 int batPosition;
 float ballX, ballY;
-float vertSpeed = 6; 
-float horiSpeed;
+float vertSpeed, horiSpeed;
 int command;
 int currentScore = 1;
-float angle =6;
 
 void setup()
 {
-  size(800,600,P2D);
+  size(900,700,P2D);
   connectToArduinoWin();
   imageMode(CENTER);
   textSize(20);
@@ -33,10 +31,8 @@ void resetBall()
 {
   ballX = 20;
   ballY = 200;
-  vertSpeed -= 0.5;
-  horiSpeed = random(angle,-angle);
-  currentScore--;
-  angle -= 0.05;
+  vertSpeed = 6;
+  horiSpeed = random(-6,6);
 }
 
 void draw()
@@ -109,13 +105,10 @@ void checkForCollision()
   if(batTouchingBall()) {
     float distFromBatCenter = batPosition-ballX;
     horiSpeed = -distFromBatCenter/10;
-    vertSpeed *= 1.5;
     vertSpeed = -vertSpeed;
     ballY = height-(bat.height*2);
     batSound.rewind();
     batSound.play();
-    currentScore++;
-    angle *= 1.1;
   }
 }
 
